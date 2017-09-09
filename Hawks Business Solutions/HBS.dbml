@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HBS" Class="HBSDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HBS.mdf;Integrated Security=True" SettingsObjectName="Hawks_Business_Solutions.Properties.Settings" SettingsPropertyName="HBSConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Address" Member="Addresses">
+    <Type Name="Address">
+      <Column Name="AddressId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StreetName" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="PostalCode" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="Province" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Suburb" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Association Name="Address_Client" Member="Clients" ThisKey="AddressId" OtherKey="AddressId" Type="Client" />
+      <Association Name="Address_CompanyInformation" Member="CompanyInformations" ThisKey="AddressId" OtherKey="AddressId" Type="CompanyInformation" />
+      <Association Name="Address_Employee" Member="Employees" ThisKey="AddressId" OtherKey="AddressId" Type="Employee" />
+      <Association Name="Address_Supplier" Member="Suppliers" ThisKey="AddressId" OtherKey="AddressId" Type="Supplier" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BankingDetails" Member="BankingDetails">
+    <Type Name="BankingDetail">
+      <Column Name="BankDetailsId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BankName" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountNumber" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="BranchCode" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="BankingDetail_Invoice" Member="Invoices" ThisKey="BankDetailsId" OtherKey="BankingDetailsId" Type="Invoice" />
+      <Association Name="BankingDetail_Supplier" Member="Suppliers" ThisKey="BankDetailsId" OtherKey="BankDetailsId" Type="Supplier" />
+      <Association Name="BankingDetail_SupplierInvoice" Member="SupplierInvoices" ThisKey="BankDetailsId" OtherKey="BankDetailsId" Type="SupplierInvoice" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Client" Member="Clients">
+    <Type Name="Client">
+      <Column Name="ClientId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="AddressId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Client_JobQuote" Member="JobQuotes" ThisKey="ClientId" OtherKey="ClientId" Type="JobQuote" />
+      <Association Name="Address_Client" Member="Address" ThisKey="AddressId" OtherKey="AddressId" Type="Address" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyInformation" Member="CompanyInformations">
+    <Type Name="CompanyInformation">
+      <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompanyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RegistrationNumber" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="AddressId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Association Name="CompanyInformation_Invoice" Member="Invoices" ThisKey="CompanyId" OtherKey="CompanyId" Type="Invoice" />
+      <Association Name="Address_CompanyInformation" Member="Address" ThisKey="AddressId" OtherKey="AddressId" Type="Address" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="AddressId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GenderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Employee_EmployeeJobDuration" Member="EmployeeJobDurations" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="EmployeeJobDuration" />
+      <Association Name="Employee_WorkLine" Member="WorkLines" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="WorkLine" />
+      <Association Name="Employee_User" Member="User" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="User" Cardinality="One" />
+      <Association Name="Address_Employee" Member="Address" ThisKey="AddressId" OtherKey="AddressId" Type="Address" IsForeignKey="true" />
+      <Association Name="EmployeeType_Employee" Member="EmployeeType" ThisKey="EmployeeTypeId" OtherKey="EmployeeTypeId" Type="EmployeeType" IsForeignKey="true" />
+      <Association Name="Gender_Employee" Member="Gender" ThisKey="GenderId" OtherKey="GenderId" Type="Gender" IsForeignKey="true" />
+      <Association Name="NextOfKin_Employee" Member="NextOfKin" ThisKey="NkId" OtherKey="NkId" Type="NextOfKin" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeJobDuration" Member="EmployeeJobDurations">
+    <Type Name="EmployeeJobDuration">
+      <Column Name="JobId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TagInTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TagOutTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Employee_EmployeeJobDuration" Member="Employee" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="Employee" IsForeignKey="true" />
+      <Association Name="JobOrder_EmployeeJobDuration" Member="JobOrder" ThisKey="JobId" OtherKey="JobId" Type="JobOrder" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmployeeType" Member="EmployeeTypes">
+    <Type Name="EmployeeType">
+      <Column Name="EmployeeTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="Char(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AccessLevel" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="EmployeeType_Employee" Member="Employees" ThisKey="EmployeeTypeId" OtherKey="EmployeeTypeId" Type="Employee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Gender" Member="Genders">
+    <Type Name="Gender">
+      <Column Name="GenderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GenderName" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Gender_Employee" Member="Employees" ThisKey="GenderId" OtherKey="GenderId" Type="Employee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Inventory" Member="Inventories">
+    <Type Name="Inventory">
+      <Column Name="InventoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InventoryName" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Units" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InventoryPrice" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="InventoryDescription" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Inventory_InventoryLine" Member="InventoryLines" ThisKey="InventoryId" OtherKey="InventoryId" Type="InventoryLine" />
+      <Association Name="Inventory_InventoryWrittenOff" Member="InventoryWrittenOff" ThisKey="InventoryId" OtherKey="InventoryId" Type="InventoryWrittenOff" Cardinality="One" />
+      <Association Name="Inventory_OrdersMade" Member="OrdersMades" ThisKey="InventoryId" OtherKey="InventoryId" Type="OrdersMade" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InventoryLine" Member="InventoryLines">
+    <Type Name="InventoryLine">
+      <Column Name="InventoryId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QuoteId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Inventory_InventoryLine" Member="Inventory" ThisKey="InventoryId" OtherKey="InventoryId" Type="Inventory" IsForeignKey="true" />
+      <Association Name="JobQuote_InventoryLine" Member="JobQuote" ThisKey="QuoteId" OtherKey="QuoteId" Type="JobQuote" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InventoryWrittenOff" Member="InventoryWrittenOffs">
+    <Type Name="InventoryWrittenOff">
+      <Column Name="InventoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Inventory_InventoryWrittenOff" Member="Inventory" ThisKey="InventoryId" OtherKey="InventoryId" Type="Inventory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Invoice" Member="Invoices">
+    <Type Name="Invoice">
+      <Column Name="InvoiceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="JobId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="VatId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cost" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="BankingDetailsId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Invoice_JobOrder" Member="JobOrders" ThisKey="InvoiceId" OtherKey="InvoiceId" Type="JobOrder" />
+      <Association Name="BankingDetail_Invoice" Member="BankingDetail" ThisKey="BankingDetailsId" OtherKey="BankDetailsId" Type="BankingDetail" IsForeignKey="true" />
+      <Association Name="CompanyInformation_Invoice" Member="CompanyInformation" ThisKey="CompanyId" OtherKey="CompanyId" Type="CompanyInformation" IsForeignKey="true" />
+      <Association Name="VAT_Invoice" Member="VAT" ThisKey="VatId" OtherKey="VatID" Type="VAT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InvoicePayment" Member="InvoicePayments">
+    <Type Name="InvoicePayment">
+      <Column Name="PaymentId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SupplierInvoiceId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PaymentDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="AmountPaid" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobOrder" Member="JobOrders">
+    <Type Name="JobOrder">
+      <Column Name="JobId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QuoteId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="JobStatusId" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="InvoiceId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="JobTitle" Type="System.String" DbType="Char(25)" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="JobOrder_EmployeeJobDuration" Member="EmployeeJobDurations" ThisKey="JobId" OtherKey="JobId" Type="EmployeeJobDuration" />
+      <Association Name="JobOrder_WorkLine" Member="WorkLines" ThisKey="JobId" OtherKey="JobId" Type="WorkLine" />
+      <Association Name="Invoice_JobOrder" Member="Invoice" ThisKey="InvoiceId" OtherKey="InvoiceId" Type="Invoice" IsForeignKey="true" />
+      <Association Name="JobOrderStatus_JobOrder" Member="JobOrderStatus" ThisKey="JobStatusId" OtherKey="StatusId" Type="JobOrderStatus" IsForeignKey="true" />
+      <Association Name="JobQuote_JobOrder" Member="JobQuote" ThisKey="QuoteId" OtherKey="QuoteId" Type="JobQuote" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobOrderStatus" Member="JobOrderStatus">
+    <Type Name="JobOrderStatus">
+      <Column Name="StatusId" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="Char(255) NOT NULL" CanBeNull="false" />
+      <Association Name="JobOrderStatus_JobOrder" Member="JobOrders" ThisKey="StatusId" OtherKey="JobStatusId" Type="JobOrder" />
+    </Type>
+  </Table>
+  <Table Name="dbo.JobQuote" Member="JobQuotes">
+    <Type Name="JobQuote">
+      <Column Name="QuoteId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="QuoteCost" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="QuoteDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="QuoteDescription" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ClientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="QuoteStatus" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Association Name="JobQuote_InventoryLine" Member="InventoryLines" ThisKey="QuoteId" OtherKey="QuoteId" Type="InventoryLine" />
+      <Association Name="JobQuote_JobOrder" Member="JobOrders" ThisKey="QuoteId" OtherKey="QuoteId" Type="JobOrder" />
+      <Association Name="JobQuote_ServiceLine" Member="ServiceLines" ThisKey="QuoteId" OtherKey="QuoteId" Type="ServiceLine" />
+      <Association Name="Client_JobQuote" Member="Client" ThisKey="ClientId" OtherKey="ClientId" Type="Client" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NextOfKin" Member="NextOfKins">
+    <Type Name="NextOfKin">
+      <Column Name="NkId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NkName" Type="System.String" DbType="Char(25) NOT NULL" CanBeNull="false" />
+      <Column Name="NkPhoneNumber" Type="System.String" DbType="Char(15) NOT NULL" CanBeNull="false" />
+      <Association Name="NextOfKin_Employee" Member="Employees" ThisKey="NkId" OtherKey="NkId" Type="Employee" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Service" Member="Services">
+    <Type Name="Service">
+      <Column Name="ServiceId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ServiceName" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceDescription" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="ServicePricePerHour" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Association Name="Service_ServiceLine" Member="ServiceLines" ThisKey="ServiceId" OtherKey="ServiceId" Type="ServiceLine" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrdersMade" Member="OrdersMades">
+    <Type Name="OrdersMade">
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InventoryId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SupplierId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SupplierOrderStatusId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DateReceived" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="OrdersMade_SupplierInvoice" Member="SupplierInvoices" ThisKey="OrderId" OtherKey="OrderId" Type="SupplierInvoice" />
+      <Association Name="Inventory_OrdersMade" Member="Inventory" ThisKey="InventoryId" OtherKey="InventoryId" Type="Inventory" IsForeignKey="true" />
+      <Association Name="Supplier_OrdersMade" Member="Supplier" ThisKey="SupplierId" OtherKey="SupplierId" Type="Supplier" IsForeignKey="true" />
+      <Association Name="SupplierOrderStatus_OrdersMade" Member="SupplierOrderStatus" ThisKey="SupplierOrderStatusId" OtherKey="SupplierOrderStatusId" Type="SupplierOrderStatus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ServiceLine" Member="ServiceLines">
+    <Type Name="ServiceLine">
+      <Column Name="QuoteId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ServiceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Hours" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="JobQuote_ServiceLine" Member="JobQuote" ThisKey="QuoteId" OtherKey="QuoteId" Type="JobQuote" IsForeignKey="true" />
+      <Association Name="Service_ServiceLine" Member="Service" ThisKey="ServiceId" OtherKey="ServiceId" Type="Service" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Supplier" Member="Suppliers">
+    <Type Name="Supplier">
+      <Column Name="SupplierId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SupplierName" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="AddressId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BankDetailsId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Supplier_OrdersMade" Member="OrdersMades" ThisKey="SupplierId" OtherKey="SupplierId" Type="OrdersMade" />
+      <Association Name="Address_Supplier" Member="Address" ThisKey="AddressId" OtherKey="AddressId" Type="Address" IsForeignKey="true" />
+      <Association Name="BankingDetail_Supplier" Member="BankingDetail" ThisKey="BankDetailsId" OtherKey="BankDetailsId" Type="BankingDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SupplierInvoice" Member="SupplierInvoices">
+    <Type Name="SupplierInvoice">
+      <Column Name="SupplierInvoiceId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BankDetailsId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cost" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="BankingDetail_SupplierInvoice" Member="BankingDetail" ThisKey="BankDetailsId" OtherKey="BankDetailsId" Type="BankingDetail" IsForeignKey="true" />
+      <Association Name="OrdersMade_SupplierInvoice" Member="OrdersMade" ThisKey="OrderId" OtherKey="OrderId" Type="OrdersMade" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SupplierOrderStatus" Member="SupplierOrderStatus">
+    <Type Name="SupplierOrderStatus">
+      <Column Name="SupplierOrderStatusId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="SupplierOrderStatus_OrdersMade" Member="OrdersMades" ThisKey="SupplierOrderStatusId" OtherKey="SupplierOrderStatusId" Type="OrdersMade" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WorkLine" Member="WorkLines">
+    <Type Name="WorkLine">
+      <Column Name="JobId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Employee_WorkLine" Member="Employee" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="Employee" IsForeignKey="true" />
+      <Association Name="JobOrder_WorkLine" Member="JobOrder" ThisKey="JobId" OtherKey="JobId" Type="JobOrder" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VAT" Member="VATs">
+    <Type Name="VAT">
+      <Column Name="VatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="VatValue" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Association Name="VAT_Invoice" Member="Invoices" ThisKey="VatID" OtherKey="VatId" Type="Invoice" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserLog" Member="UserLogs">
+    <Type Name="UserLog">
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LogInTime" Type="System.DateTime" DbType="DateTime NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="LogOutTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserLog" Member="User" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="User_UserLog" Member="UserLogs" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="UserLog" />
+      <Association Name="Employee_User" Member="Employee" ThisKey="EmployeeId" OtherKey="EmployeeId" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

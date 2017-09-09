@@ -1,0 +1,21 @@
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\HBS.mdf
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\HBS_log.ldf
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\Hawks Business Solutions.exe.config
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\FastMember.dll
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\Fkosoft.FontAwesome.dll
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\MetroFramework.Design.dll
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\MetroFramework.dll
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks Business Solutions.csprojResolveAssemblyReference.cache
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks_Business_Solutions.AddClient.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks_Business_Solutions.AddJobOrder.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks_Business_Solutions.AddQuote.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks_Business_Solutions.AddSupplier.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks_Business_Solutions.MainForm.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks_Business_Solutions.Properties.Resources.resources
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks Business Solutions.csproj.GenerateResource.Cache
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks Business Solutions.exe
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks Business Solutions.pdb
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\Hawks Business Solutions.exe
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\bin\Debug\Hawks Business Solutions.pdb
+C:\Users\HP\Documents\Visual Studio 2015\Projects\Hawks Business Solutions - Copy\Hawks Business Solutions\obj\Debug\Hawks_Business_Solutions.EmployeeForm.resources
